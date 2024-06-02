@@ -1,12 +1,12 @@
 import pytest
-from app import create_app
+from suma import create_app
 
 # Configura el entorno para pruebas
 @pytest.fixture(scope="session")
 def app():
     # Asegúrate de que se use la configuración de pruebas
     # os.environ["PYMS_CONFIGMAP_FILE"] = "config-tests.yml"
-    app = create_app()
+    app = create_app
     return app
 
 # Crea un cliente de prueba para la aplicación
@@ -17,7 +17,7 @@ def client(app):
 # Obtiene la URL base del servicio
 @pytest.fixture(scope="module")
 def base_url(app):
-    return app.config"APPLICATION_ROOT"
+    return app.config
 
 # Prueba la ruta de salud del microservicio
 def test_healthcheck(client, base_url):
