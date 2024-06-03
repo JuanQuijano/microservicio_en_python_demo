@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
-
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
     return app
 
 app = create_app()
+CORS(app)
 
 def sumar(a, b):
     try:

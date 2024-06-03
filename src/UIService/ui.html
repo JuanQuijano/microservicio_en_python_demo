@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sumar</title>
+    <style>
+        #result {
+            margin-top: 1em;
+        }
+    </style>
+</head>
+<body>
+    <form id="sumar-form">
+        <input type="number" id="cantidad1" placeholder="Primer número" required>
+        <input type="number" id="cantidad2" placeholder="Segundo número" required>
+        <button type="submit">Sumar</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('sumar-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var cantidad1 = document.getElementById('cantidad1').value;
+            var cantidad2 = document.getElementById('cantidad2').value;
+            fetch('http://localhost:5000/sumar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    cantidad1: parseFloat(cantidad1),
+                    cantidad2: parseFloat(cantidad2),
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.resultado !== undefined) {
+                    document.getElementById('result').textContent = 'Resultado: ' + data.resultado;
+                } else {
+                    document.getElementById('result').textContent = 'Error: ' + data.error;
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
