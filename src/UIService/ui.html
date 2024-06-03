@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sumar</title>
+    <title>Operaciones</title>
     <style>
         #result {
             margin-top: 1em;
@@ -9,24 +9,33 @@
     </style>
 </head>
 <body>
-    <form id="sumar-form">
-        <input type="number" id="cantidad1" required> +
+    <form id="operation-form">
+        <select id="operation" required>
+            <option value="">Selecciona una operación</option>
+            <option value="suma">Suma</option>
+            <option value="resta">Resta</option>
+            <option value="multiplicacion">Multiplicación</option>
+            <option value="division">División</option>
+        </select>
+        <input type="number" id="cantidad1" required>
         <input type="number" id="cantidad2" required>
-        <button type="submit">Sumar</button>
+        <button type="submit">Calcular</button>
     </form>
     <div id="result"></div>
 
     <script>
-        document.getElementById('sumar-form').addEventListener('submit', function(event) {
+        document.getElementById('operation-form').addEventListener('submit', function(event) {
             event.preventDefault();
+            var operation = document.getElementById('operation').value;
             var cantidad1 = document.getElementById('cantidad1').value;
             var cantidad2 = document.getElementById('cantidad2').value;
-            fetch('http://localhost:5000/sumar', {
+            fetch('http://localhost:5000/api/queue', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    operacion: operation,
                     cantidad1: parseFloat(cantidad1),
                     cantidad2: parseFloat(cantidad2),
                 }),
