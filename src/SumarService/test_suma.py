@@ -1,5 +1,5 @@
 import pytest
-from SumarService.suma import app, sumar
+from SumarService.suma import app
 
 @pytest.fixture
 def client():
