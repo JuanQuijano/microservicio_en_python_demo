@@ -7,6 +7,7 @@ def create_app():
 
 app = create_app()
 CORS(app)
+app.run(port=5000)
 
 def sumar(a, b):
     try:

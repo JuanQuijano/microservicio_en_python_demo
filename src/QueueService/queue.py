@@ -10,6 +10,7 @@ def create_app():
 
 app = create_app()
 CORS(app)
+app.run(port=5001)
 
 sas_token = r"sv=2022-11-02&ss=q&srt=sco&sp=rwdlacup&se=2024-06-30T18:34:35Z&st=2024-06-03T10:34:35Z&spr=https&sig=bfeO3soR92xBx8ZD0df%2BaI0F87Mj%2BPeDgK9bS8dD81k%3D"
 queue_name = "calculadoraqueue"
